@@ -11,7 +11,7 @@ import java.util.List;
 //@Table annotation provides more options to customize the mapping.
 //Here the name of the table to be created in the database is explicitly mentioned as 'images'. Hence the table named 'images' will be created in the database with all the columns mapped to all the attributes in 'Image' class
 @Table(name = "images")
-public class Image {
+public class Image   {
 
     //@Id annotation specifies that the corresponding attribute is a primary key
     @Id
@@ -27,7 +27,7 @@ public class Image {
     // Text is a Postgres specific column type that allows you to save
     // text based data that will be longer than 256 characters
     // this is a base64 encoded version of the image
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition ="TEXT")
     private String imageFile;
 
 
@@ -51,22 +51,81 @@ public class Image {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Tag> tags = new ArrayList<>();
 
+
+
     public Image() {
     }
 
-    public Image(int i, String s, String s1, Date date) {
-        this.id = i;
-        this.title = s;
-        this.imageFile = s1;
+    public Image(int id, String title, String imageFile, Date date) {
+        this.id = id;
+        this.title = title;
+        this.imageFile = imageFile;
         this.date = date;
     }
 
-    public Image(int i, String s, String s1, String s2, Date date) {
-        this.id = i;
-        this.title = s;
-        this.imageFile = s1;
-        this.description = s2;
+    public Image(int id, String title, String imageFile, String description, Date date) {
+        this.id = id;
+        this.title = title;
+        this.imageFile = imageFile;
+        this.description = description;
         this.date = date;
     }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+
 
 }
