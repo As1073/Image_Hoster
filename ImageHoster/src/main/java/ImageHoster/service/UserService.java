@@ -25,6 +25,21 @@ public class UserService {
     //Else returns null
     public User login(User user) {
         User existingUser = userRepository.checkUser(user.getUsername(), user.getPassword());
+        if (existingUser != null) {
+            return existingUser;
+        } else {
+            return null;
+        }
     }
+
+    public boolean strongPassword(String password){
+        if (password.matches("(?=.*[0-9]).*") &&
+                (password.matches("(?=.*[a-z]).*") || password.matches("(?=.*[A-Z]).*")) &&
+                password.matches("(?=.*[~!@#$%^&*()_-]).*")
+        ) {
+            return true;
+        }
+            return false;
+   }
 
 }
